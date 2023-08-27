@@ -1,0 +1,29 @@
+{
+  "name": "api-readers-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
+  },
+  "author": "Paul Pladziewicz",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@koa/cors": "^3.1.0",
+    "dotenv": "^16.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-json": "^2.0.2",
+    "koa-router": "^10.1.1",
+    "sqlite": "^5.0.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

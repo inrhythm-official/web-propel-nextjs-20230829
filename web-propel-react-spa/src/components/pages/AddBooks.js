@@ -17,7 +17,7 @@ export default function AddBooks() {
     return (
 
         <ProtectedLayout>
-            <NavLink to="/dashboard" className="block mt-5">Back to Dashboard</NavLink>
+            <NavLink to="/dashboard" className="d-block my-4">Back to Dashboard</NavLink>
             <div className="mb-2 d-flex align-items-center justify-content-between">
                 <h1>Add Books</h1>
                 <GenreDropdown setGenre={setGenre} />

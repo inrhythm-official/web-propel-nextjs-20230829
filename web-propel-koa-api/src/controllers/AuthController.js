@@ -36,6 +36,7 @@ export default {
   async register(ctx) {
     try {
       const { email, password } = ctx.request.body
+
       let user = await new Promise ((resolve, reject) => {
         ctx.db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
           if (err) reject("Read error: " + err.message)
@@ -46,14 +47,13 @@ export default {
       if (user) {
         ctx.status = 400
         return ctx.body = {
-          success: false,
           error: 'user already exists'
         }
       }
 
       await new Promise ((resolve, reject) => {
         ctx.db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (err, row) => {
-          if (err) reject("Read error: " + err.message)
+          if (err) reject("Insert error: " + err.message)
           resolve(row)
         });
       })

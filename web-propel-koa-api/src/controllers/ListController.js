@@ -34,7 +34,7 @@ export default {
 
     await new Promise ((resolve, reject) => {
       ctx.db.run('UPDATE books SET title = ?, author = ?, publication_date = ? WHERE book_id = ?', [title, author, publication_date, book_id], function(err, row) {
-        if (err) reject("Insert error: " + err.message)
+        if (err) reject("Update error: " + err.message)
         resolve(row)
       });
     })
@@ -45,13 +45,13 @@ export default {
     const { book_id } = ctx.params
     await new Promise ((resolve, reject) => {
       ctx.db.run('DELETE FROM books WHERE book_id = ?', [book_id], function(err, row) {
-        if (err) reject("Insert error: " + err.message)
+        if (err) reject("Delete error: " + err.message)
         resolve(row)
       });
     })
     await new Promise ((resolve, reject) => {
       ctx.db.run('DELETE FROM user_book_list WHERE book_id = ?', [book_id], function(err, row) {
-        if (err) reject("Insert error: " + err.message)
+        if (err) reject("Delete error: " + err.message)
         resolve(row)
       });
     })

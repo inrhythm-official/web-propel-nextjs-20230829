@@ -13,11 +13,16 @@ export default function Dashboard() {
             .then(res => setBooks(res))
     }, [])
 
+    const deleteFn = (id) => {
+       setBooks(books.filter(book => book.book_id !== id))
+    }
+
     return (
         <ProtectedLayout>
             <div className="my-5 row">
+                {books.length === 0 && <p className="mx-1 mx-xxl-0">You currently don't have any books on your reading list.</p>}
                 {books.map(book => {
-                    return <div className='col-md-3'><BookCard key={book.title} data={book} deleteButton={true} /></div>
+                    return <div className='col-md-3'><BookCard key={book.title} data={book} deleteButton={true} deleteFn={deleteFn} /></div>
                 })}
             </div>
         </ProtectedLayout>

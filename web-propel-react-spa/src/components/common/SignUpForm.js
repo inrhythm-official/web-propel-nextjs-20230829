@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import {useNavigate} from "react-router-dom"
 
 const validationSchema = yup.object().shape({
-    email: yup .string() .email('Please enter a valid email address.') .required('Email is required'),
+    email: yup.string().email('Please enter a valid email address.').required('Email is required'),
     password: yup.string().required('Password is required')
 });
 
@@ -16,7 +16,7 @@ export default function SignUpForm() {
 
     return (
         <Formik
-            initialValues={{email: 'test', password: ''}}
+            initialValues={{email: '', password: ''}}
             validationSchema={validationSchema}
             onSubmit={async ({email, password}, { setSubmitting }) => {
                 setSubmitting(true);
@@ -27,6 +27,11 @@ export default function SignUpForm() {
                         body: JSON.stringify({email, password})
                     })
                     res = await res.json()
+
+                    if (res.error) {
+                        return;
+                    }
+
                     localStorage.setItem('token', res.token);
                     Cookie.set('session', res.token)
                     navigate('/dashboard')

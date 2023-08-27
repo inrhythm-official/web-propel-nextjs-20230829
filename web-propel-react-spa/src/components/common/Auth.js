@@ -10,6 +10,7 @@ export default function Auth({ children }) {
         if (!isLoggedIn) {
             navigate('/login')
         }
+        // eslint-disable-next-line
     }, [])
 
     return (
